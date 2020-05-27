@@ -1,26 +1,25 @@
 class Cylinder:
     from decimal import Decimal
+    import math
     def __init__(self,r=None,h=None,bottom_area=None,d=None,area_C=None,C=None,V=None,π='3.14',count_mian=2):
         self.r=r
         self.bottom_area=bottom_area
         self.h=h
-        self.d=d
+        self.d=str(d)
         self.C=C
         self.V=V
         self.π=π
         self.count_mian=count_mian
         if area_C==None and r!=None:
-            self.area_C_init=self.Decimal(2*self.Decimal(π)*r)
+            self.r=str(self.r)
+            self.r=self.Decimal(self.r)
+            self.area_C_init=self.Decimal(2*self.Decimal(π)*self.r)
         elif area_C==None and d!=None:
+            self.d=str(self.d)
             self.π=self.Decimal(self.π)
             self.d=self.Decimal(self.d)
             self.area_C_init=self.Decimal(self.π*self.d)
-        elif area_C==None and r==None and bottom_area!=None:
-            self.bottom_area=self.Decimal(self.bottom_area)
-            self.π=self.Decimal(self.π)
-            self.r=self.Decimal(self.bottom_area/2/self.π)
-            self.area_C_init=self.Decimal(self.r*self.π*2)
-        else:
+        elif area_C!=None:
             self.π=self.Decimal(self.π)
             self.area_C_init=self.Decimal(str(area_C))
             self.r=self.area_C_init/self.π/2
@@ -30,6 +29,7 @@ class Cylinder:
         你可以得到这个圆柱的体积在这个函数。
         '''
         if self.r!=None and self.h!=None:
+            self.r=str(self.r)
             self.r=self.Decimal(self.r)
             self.h=self.Decimal(self.h)
             self.π=self.Decimal(self.π)
@@ -40,7 +40,8 @@ class Cylinder:
             print(self.bottom_area,'*',self.h,'=',self.V)    #打印出计算的结果
             return(self.V)
         elif self.bottom_area!=None and self.h!=None:
-            self.bottom_area=self.Decimal(str(self.bottom_area))    #初始化底面积
+            self.bottom_area=str(self.bottom_area)
+            self.bottom_area=self.Decimal(self.bottom_area)    #初始化底面积
             self.h=self.Decimal(self.h)      #初始化高
             self.V=self.bottom_area*self.h      #计算出圆柱的体积,公式: V=sh    体积等于底面积乘以高  
             self.V=self.Decimal(self.V)
@@ -58,6 +59,7 @@ class Cylinder:
             print(self.bottom_area,'*',self.h,'=',self.V)    #打印出计算的结果
             return(self.V)
         elif self.d!=None and self.h!=None:
+            self.d=str(self.d)
             self.d=self.Decimal(self.d)
             self.h=self.Decimal(self.h)
             self.π=self.Decimal(self.π)
@@ -82,5 +84,5 @@ class Cylinder:
             print('表面积:',self.Surface)   #打印计算的结果
             print('侧面积:',self.Lateral_area)
 if __name__ == '__main__':
-    test=Cylinder(d=20,h=15)
-    test.Get_Surface()
+    test=Cylinder(bottom_area=30,h=10)
+    test.Get_Volume()
